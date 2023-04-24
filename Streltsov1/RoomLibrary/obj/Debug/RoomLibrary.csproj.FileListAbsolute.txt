@@ -1,0 +1,12 @@
+C:\Users\student\Desktop\юлдашева\RoomLibrary\bin\Debug\RoomLibrary.dll
+C:\Users\student\Desktop\юлдашева\RoomLibrary\bin\Debug\RoomLibrary.pdb
+C:\Users\student\Desktop\юлдашева\RoomLibrary\obj\Debug\RoomLibrary.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\юлдашева\RoomLibrary\obj\Debug\RoomLibrary.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\юлдашева\RoomLibrary\obj\Debug\RoomLibrary.dll
+C:\Users\student\Desktop\юлдашева\RoomLibrary\obj\Debug\RoomLibrary.pdb
+C:\Users\student\Desktop\Mdk-02-main\Streltsov\RoomLibrary\bin\Debug\RoomLibrary.dll
+C:\Users\student\Desktop\Mdk-02-main\Streltsov\RoomLibrary\bin\Debug\RoomLibrary.pdb
+C:\Users\student\Desktop\Mdk-02-main\Streltsov\RoomLibrary\obj\Debug\RoomLibrary.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\Mdk-02-main\Streltsov\RoomLibrary\obj\Debug\RoomLibrary.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\Mdk-02-main\Streltsov\RoomLibrary\obj\Debug\RoomLibrary.dll
+C:\Users\student\Desktop\Mdk-02-main\Streltsov\RoomLibrary\obj\Debug\RoomLibrary.pdb
