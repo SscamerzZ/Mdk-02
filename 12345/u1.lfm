@@ -1,0 +1,152 @@
+object Form1: TForm1
+  Left = 1064
+  Height = 307
+  Top = 569
+  Width = 721
+  Caption = 'Form1'
+  ClientHeight = 307
+  ClientWidth = 721
+  Font.CharSet = RUSSIAN_CHARSET
+  Font.Color = clBlack
+  Font.Height = -16
+  Font.Name = 'Segoe UI'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
+  LCLVersion = '2.2.6.0'
+  object txtFm: TEdit
+    Left = 110
+    Height = 29
+    Top = 50
+    Width = 120
+    TabOrder = 0
+  end
+  object txtIm: TEdit
+    Left = 112
+    Height = 29
+    Top = 108
+    Width = 120
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 24
+    Height = 21
+    Top = 50
+    Width = 65
+    Caption = 'Фамилия'
+    ParentColor = False
+  end
+  object Button1: TButton
+    Left = 368
+    Height = 25
+    Top = 248
+    Width = 75
+    Caption = 'Показать'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object gr21: TRadioButton
+    Left = 250
+    Height = 25
+    Top = 50
+    Width = 84
+    Caption = '21ИС-21'
+    TabOrder = 3
+  end
+  object gr22: TRadioButton
+    Left = 250
+    Height = 25
+    Top = 88
+    Width = 84
+    Caption = '22ИС-21'
+    TabOrder = 4
+  end
+  object gr23: TRadioButton
+    Left = 248
+    Height = 25
+    Top = 123
+    Width = 84
+    Caption = '23ИС-21'
+    TabOrder = 8
+  end
+  object gr24: TRadioButton
+    Left = 250
+    Height = 25
+    Top = 160
+    Width = 84
+    Caption = '24ИС-21'
+    TabOrder = 5
+  end
+  object gr25: TRadioButton
+    Left = 248
+    Height = 25
+    Top = 200
+    Width = 84
+    Caption = '25ИС-21'
+    TabOrder = 6
+  end
+  object Label2: TLabel
+    Left = 24
+    Height = 21
+    Top = 108
+    Width = 31
+    Caption = 'Имя'
+    ParentColor = False
+  end
+  object GroupBox1: TGroupBox
+    Left = 433
+    Height = 153
+    Top = 42
+    Width = 241
+    Caption = 'Языки программирования'
+    ClientHeight = 127
+    ClientWidth = 237
+    TabOrder = 7
+    object Pascal: TCheckBox
+      Left = 12
+      Height = 25
+      Top = 20
+      Width = 63
+      Caption = 'Pascal'
+      TabOrder = 0
+    end
+    object CLang: TCheckBox
+      Left = 12
+      Height = 25
+      Top = 56
+      Width = 64
+      Caption = 'CLang'
+      TabOrder = 1
+    end
+    object Python: TCheckBox
+      Left = 12
+      Height = 25
+      Top = 92
+      Width = 69
+      Caption = 'Python'
+      TabOrder = 2
+    end
+  end
+  object txtotch: TEdit
+    Left = 112
+    Height = 29
+    Top = 166
+    Width = 120
+    TabOrder = 9
+  end
+  object Label3: TLabel
+    Left = 24
+    Height = 21
+    Top = 166
+    Width = 67
+    Caption = 'Отчество'
+    ParentColor = False
+  end
+  object Java: TCheckBox
+    Left = 448
+    Height = 25
+    Top = 200
+    Width = 50
+    Caption = 'Java'
+    TabOrder = 10
+  end
+end
