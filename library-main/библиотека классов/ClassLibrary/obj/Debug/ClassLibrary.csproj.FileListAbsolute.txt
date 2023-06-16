@@ -1,0 +1,6 @@
+C:\Users\student\Desktop\библиотека классов\ClassLibrary\bin\Debug\ClassLibrary.dll
+C:\Users\student\Desktop\библиотека классов\ClassLibrary\bin\Debug\ClassLibrary.pdb
+C:\Users\student\Desktop\библиотека классов\ClassLibrary\obj\Debug\ClassLibrary.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\библиотека классов\ClassLibrary\obj\Debug\ClassLibrary.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\библиотека классов\ClassLibrary\obj\Debug\ClassLibrary.dll
+C:\Users\student\Desktop\библиотека классов\ClassLibrary\obj\Debug\ClassLibrary.pdb
