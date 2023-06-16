@@ -1,0 +1,17 @@
+C:\Users\student\source\repos\RoomLibrary1\RoomLibrary1\bin\Debug\RoomLibrary1.dll
+C:\Users\student\source\repos\RoomLibrary1\RoomLibrary1\bin\Debug\RoomLibrary1.pdb
+C:\Users\student\source\repos\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.csprojAssemblyReference.cache
+C:\Users\student\source\repos\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.dll
+C:\Users\student\source\repos\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.pdb
+C:\Users\kuksheva-ba\Desktop\Batsaev\RoomLibrary1\RoomLibrary1\bin\Debug\RoomLibrary1.dll
+C:\Users\kuksheva-ba\Desktop\Batsaev\RoomLibrary1\RoomLibrary1\bin\Debug\RoomLibrary1.pdb
+C:\Users\kuksheva-ba\Desktop\Batsaev\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.csproj.AssemblyReference.cache
+C:\Users\kuksheva-ba\Desktop\Batsaev\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.csproj.CoreCompileInputs.cache
+C:\Users\kuksheva-ba\Desktop\Batsaev\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.dll
+C:\Users\kuksheva-ba\Desktop\Batsaev\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.pdb
+C:\Users\student\Desktop\RoomLibrary1\RoomLibrary1\bin\Debug\RoomLibrary1.dll
+C:\Users\student\Desktop\RoomLibrary1\RoomLibrary1\bin\Debug\RoomLibrary1.pdb
+C:\Users\student\Desktop\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.dll
+C:\Users\student\Desktop\RoomLibrary1\RoomLibrary1\obj\Debug\RoomLibrary1.pdb
