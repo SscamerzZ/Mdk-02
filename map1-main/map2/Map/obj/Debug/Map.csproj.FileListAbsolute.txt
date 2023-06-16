@@ -1,0 +1,55 @@
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\bin\Debug\Map.exe.config
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\bin\Debug\Map.exe
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\bin\Debug\Map.pdb
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\obj\Debug\Map.csproj.AssemblyReference.cache
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\obj\Debug\Map.csproj.SuggestedBindingRedirects.cache
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\obj\Debug\Map.Form1.resources
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\obj\Debug\Map.Properties.Resources.resources
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\obj\Debug\Map.csproj.GenerateResource.cache
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\obj\Debug\Map.csproj.CoreCompileInputs.cache
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\obj\Debug\Map.exe
+C:\Users\Petrino\Desktop\C#\MDK 01.02\Map\Map\Map\obj\Debug\Map.pdb
+C:\Users\student\Desktop\Map\Map\Map\bin\Debug\Map.exe.config
+C:\Users\student\Desktop\Map\Map\Map\bin\Debug\Map.exe
+C:\Users\student\Desktop\Map\Map\Map\bin\Debug\Map.pdb
+C:\Users\student\Desktop\Map\Map\Map\obj\Debug\Map.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\Map\Map\Map\obj\Debug\Map.csproj.SuggestedBindingRedirects.cache
+C:\Users\student\Desktop\Map\Map\Map\obj\Debug\Map.Form1.resources
+C:\Users\student\Desktop\Map\Map\Map\obj\Debug\Map.Properties.Resources.resources
+C:\Users\student\Desktop\Map\Map\Map\obj\Debug\Map.csproj.GenerateResource.cache
+C:\Users\student\Desktop\Map\Map\Map\obj\Debug\Map.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\Map\Map\Map\obj\Debug\Map.exe
+C:\Users\student\Desktop\Map\Map\Map\obj\Debug\Map.pdb
+C:\Users\student\Desktop\Map\Map\bin\Debug\Map.exe.config
+C:\Users\student\Desktop\Map\Map\bin\Debug\Map.exe
+C:\Users\student\Desktop\Map\Map\bin\Debug\Map.pdb
+C:\Users\student\Desktop\Map\Map\obj\Debug\Map.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\Map\Map\obj\Debug\Map.csproj.SuggestedBindingRedirects.cache
+C:\Users\student\Desktop\Map\Map\obj\Debug\Map.Form1.resources
+C:\Users\student\Desktop\Map\Map\obj\Debug\Map.Properties.Resources.resources
+C:\Users\student\Desktop\Map\Map\obj\Debug\Map.csproj.GenerateResource.cache
+C:\Users\student\Desktop\Map\Map\obj\Debug\Map.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\Map\Map\obj\Debug\Map.exe
+C:\Users\student\Desktop\Map\Map\obj\Debug\Map.pdb
+C:\Users\student\Desktop\решетников23ис\map\Map\bin\Debug\Map.exe.config
+C:\Users\student\Desktop\решетников23ис\map\Map\bin\Debug\Map.exe
+C:\Users\student\Desktop\решетников23ис\map\Map\bin\Debug\Map.pdb
+C:\Users\student\Desktop\решетников23ис\map\Map\obj\Debug\Map.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\решетников23ис\map\Map\obj\Debug\Map.csproj.SuggestedBindingRedirects.cache
+C:\Users\student\Desktop\решетников23ис\map\Map\obj\Debug\Map.Form1.resources
+C:\Users\student\Desktop\решетников23ис\map\Map\obj\Debug\Map.Properties.Resources.resources
+C:\Users\student\Desktop\решетников23ис\map\Map\obj\Debug\Map.csproj.GenerateResource.cache
+C:\Users\student\Desktop\решетников23ис\map\Map\obj\Debug\Map.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\решетников23ис\map\Map\obj\Debug\Map.exe
+C:\Users\student\Desktop\решетников23ис\map\Map\obj\Debug\Map.pdb
+C:\Users\student\Desktop\решетников23ис\map2\Map\bin\Debug\Map.exe.config
+C:\Users\student\Desktop\решетников23ис\map2\Map\bin\Debug\Map.exe
+C:\Users\student\Desktop\решетников23ис\map2\Map\bin\Debug\Map.pdb
+C:\Users\student\Desktop\решетников23ис\map2\Map\obj\Debug\Map.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\решетников23ис\map2\Map\obj\Debug\Map.csproj.SuggestedBindingRedirects.cache
+C:\Users\student\Desktop\решетников23ис\map2\Map\obj\Debug\Map.Form1.resources
+C:\Users\student\Desktop\решетников23ис\map2\Map\obj\Debug\Map.Properties.Resources.resources
+C:\Users\student\Desktop\решетников23ис\map2\Map\obj\Debug\Map.csproj.GenerateResource.cache
+C:\Users\student\Desktop\решетников23ис\map2\Map\obj\Debug\Map.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\решетников23ис\map2\Map\obj\Debug\Map.exe
+C:\Users\student\Desktop\решетников23ис\map2\Map\obj\Debug\Map.pdb
