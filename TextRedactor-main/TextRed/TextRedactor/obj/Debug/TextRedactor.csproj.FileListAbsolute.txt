@@ -1,0 +1,11 @@
+C:\Users\student\Desktop\TextRed\TextRedactor\bin\Debug\TextRedactor.exe.config
+C:\Users\student\Desktop\TextRed\TextRedactor\bin\Debug\TextRedactor.exe
+C:\Users\student\Desktop\TextRed\TextRedactor\bin\Debug\TextRedactor.pdb
+C:\Users\student\Desktop\TextRed\TextRedactor\obj\Debug\TextRedactor.csproj.AssemblyReference.cache
+C:\Users\student\Desktop\TextRed\TextRedactor\obj\Debug\TextRedactor.csproj.SuggestedBindingRedirects.cache
+C:\Users\student\Desktop\TextRed\TextRedactor\obj\Debug\TextRedactor.Form1.resources
+C:\Users\student\Desktop\TextRed\TextRedactor\obj\Debug\TextRedactor.Properties.Resources.resources
+C:\Users\student\Desktop\TextRed\TextRedactor\obj\Debug\TextRedactor.csproj.GenerateResource.cache
+C:\Users\student\Desktop\TextRed\TextRedactor\obj\Debug\TextRedactor.csproj.CoreCompileInputs.cache
+C:\Users\student\Desktop\TextRed\TextRedactor\obj\Debug\TextRedactor.exe
+C:\Users\student\Desktop\TextRed\TextRedactor\obj\Debug\TextRedactor.pdb
