@@ -1,0 +1,109 @@
+CREATE TABLE JewelryType (
+    JewelryTypeID INT PRIMARY KEY,
+    Name VARCHAR(255),
+    Manufacturer VARCHAR(255)
+);
+
+CREATE TABLE Jewelry (
+    JewelryID INT PRIMARY KEY,
+    Name VARCHAR(255),
+    JewelryTypeID INT,
+    Quantity INT,
+    Price DECIMAL(10, 2),
+    Material VARCHAR(255),
+    FOREIGN KEY (JewelryTypeID) REFERENCES JewelryType(JewelryTypeID)
+);
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    Username VARCHAR(255),
+    Password VARCHAR(255),
+    RegistrationDate DATE,
+    LastVisitDate DATE,
+    Points INT,
+    LastPointsAwardDate DATETIME
+);
+
+CREATE TABLE Purchases (
+    PurchaseID INT PRIMARY KEY,
+    CustomerID INT,
+    JewelryID INT,
+    Date DATE,
+    Quantity INT,
+    PointsSpent INT,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (JewelryID) REFERENCES Jewelry(JewelryID)
+);
+
+CREATE TABLE PromoCodes (
+    PromoCodeID INT PRIMARY KEY,
+    PromoCode VARCHAR(255),
+    IssueDate DATE,
+    Status VARCHAR(10) CHECK (Status IN ('Active', 'Used'))
+);
+
+CREATE PROCEDURE CalculatePointsForPurchases()
+BEGIN
+    DECLARE totalPoints INT;
+    DECLARE totalPurchaseAmount DECIMAL(10, 2);
+    
+    SELECT SUM(p.Price * pu.Quantity) INTO totalPurchaseAmount
+    FROM Purchases pu
+    JOIN Jewelry p ON pu.JewelryID = p.JewelryID
+    WHERE MONTH(pu.Date) = MONTH(CURRENT_DATE()) AND YEAR(pu.Date) = YEAR(CURRENT_DATE());
+    
+    IF totalPurchaseAmount >= 24000 THEN
+        SET totalPoints = totalPurchaseAmount / 500 * 10;
+    ELSEIF totalPurchaseAmount >= 12000 THEN
+        SET totalPoints = totalPurchaseAmount / 1000 * 10;
+    ELSE
+        SET totalPoints = 0;
+    END IF;
+    
+    UPDATE Customers
+    SET Points = Points + totalPoints,
+        LastPointsAwardDate = CURRENT_TIMESTAMP()
+    WHERE MONTH(LastPointsAwardDate) = MONTH(CURRENT_DATE()) AND YEAR(LastPointsAwardDate) = YEAR(CURRENT_DATE());
+
+    SELECT Username, COUNT(*) AS TotalPurchases, totalPurchaseAmount AS TotalPurchaseAmount,
+           totalPoints AS TotalPointsAwarded, CURRENT_TIMESTAMP() AS AwardDateTime
+    FROM Customers
+    WHERE MONTH(LastPointsAwardDate) = MONTH(CURRENT_DATE()) AND YEAR(LastPointsAwardDate) = YEAR(CURRENT_DATE())
+    GROUP BY Username;
+END;
+
+CREATE PROCEDURE GeneratePurchaseReport(IN customerUsername VARCHAR(255))
+BEGIN
+    DECLARE totalPurchases INT;
+    DECLARE totalPurchaseAmount DECIMAL(10, 2);
+    DECLARE totalPoints INT;
+    DECLARE totalPointsSpent INT;
+    
+    SELECT COUNT(*), SUM(p.Price * pu.Quantity)
+    INTO totalPurchases, totalPurchaseAmount
+    FROM Purchases pu
+    JOIN Jewelry p ON pu.JewelryID = p.JewelryID
+    JOIN Customers c ON pu.CustomerID = c.CustomerID
+    WHERE c.Username = customerUsername;
+    
+    SELECT SUM(Points), SUM(PointsSpent)
+    INTO totalPoints, totalPointsSpent
+    FROM Purchases
+    WHERE CustomerID = (SELECT CustomerID FROM Customers WHERE Username = customerUsername);
+    
+    SELECT customerUsername AS Username, totalPurchases AS TotalPurchases, totalPurchaseAmount AS TotalPurchaseAmount,
+           totalPoints AS TotalPoints, totalPointsSpent AS TotalPointsSpent;
+END;
+
+CREATE PROCEDURE IssuePromoCode()
+BEGIN
+    DECLARE registrationDate DATE;
+    
+    SET registrationDate = DATE_SUB(CURRENT_DATE(), INTERVAL 1 YEAR);
+
+    INSERT INTO PromoCodes (PromoCode, IssueDate, Status)
+    SELECT CONCAT('DISCOUNT_', CustomerID), CURRENT_DATE(), 'Active'
+    FROM Customers
+    WHERE RegistrationDate = registrationDate;
+END;
+
