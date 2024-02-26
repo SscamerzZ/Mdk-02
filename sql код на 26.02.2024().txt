@@ -1,0 +1,88 @@
+CREATE TABLE Skates (
+    SkateID INT PRIMARY KEY,
+    Gender VARCHAR(255),
+    Size INT,
+    Color VARCHAR(255)
+);
+
+CREATE TABLE SkateSessions (
+    SessionID INT PRIMARY KEY,
+    StartTime TIME,
+    EndTime TIME,
+    BasePrice DECIMAL(10, 2)
+);
+
+CREATE TABLE Sales (
+    SaleID INT PRIMARY KEY,
+    SaleDate DATE,
+    CustomerPhone VARCHAR(20),
+    SessionID INT,
+    PaymentType VARCHAR(50),
+    Age INT,
+    TotalCost DECIMAL(10, 2),
+    CONSTRAINT fk_Sessions FOREIGN KEY (SessionID) REFERENCES SkateSessions(SessionID)
+);
+
+CREATE TABLE SkateRental (
+    RentalID INT PRIMARY KEY,
+    SaleID INT,
+    Ticket VARCHAR(20),
+    SkateID INT,
+    Deposit DECIMAL(10, 2),
+    CONSTRAINT fk_Sales FOREIGN KEY (SaleID) REFERENCES Sales(SaleID),
+    CONSTRAINT fk_Skates FOREIGN KEY (SkateID) REFERENCES Skates(SkateID)
+);
+
+CREATE PROCEDURE CalculateSkateRentalCost()
+BEGIN
+    DECLARE sessionTime TIME;
+    DECLARE sessionDay VARCHAR(20);
+    DECLARE basePrice DECIMAL(10, 2);
+    
+    SELECT StartTime, DAYNAME(StartTime) INTO sessionTime, sessionDay
+    FROM SkateSessions;
+    
+    SELECT BasePrice INTO basePrice
+    FROM SkateSessions;
+    
+    UPDATE SkateRental
+    SET Deposit = CASE
+        WHEN sessionTime > '17:00:00' AND sessionDay IN ('Saturday', 'Sunday') THEN basePrice * 2 * 1000
+        WHEN sessionTime > '17:00:00' THEN basePrice * 1000
+        ELSE basePrice * 500
+    END
+    WHERE Age > 18;
+    
+    UPDATE Sales s
+    JOIN SkateSessions ss ON s.SessionID = ss.SessionID
+    SET TotalCost = CASE
+        WHEN sessionTime > '17:00:00' AND sessionDay IN ('Saturday', 'Sunday') THEN basePrice * 2
+        WHEN sessionTime > '17:00:00' THEN basePrice
+        ELSE 0
+    END
+    WHERE s.Age > 18;
+END;
+
+CREATE PROCEDURE CalculateChildTicketCost()
+BEGIN
+    DECLARE basePrice DECIMAL(10, 2);
+    
+    SELECT BasePrice INTO basePrice
+    FROM SkateSessions;
+    
+    UPDATE Sales
+    SET TotalCost = basePrice * 0.65
+    WHERE Age BETWEEN 7 AND 14;
+END;
+
+CREATE PROCEDURE ApplyOnlinePaymentDiscount()
+BEGIN
+    UPDATE Sales
+    SET TotalCost = CASE
+        WHEN PaymentType = 'Online Payment' AND Age > 18 THEN TotalCost * 0.95
+        WHEN PaymentType = 'Online Payment' THEN TotalCost * 0.9
+        ELSE TotalCost
+    END;
+END;
+
+
