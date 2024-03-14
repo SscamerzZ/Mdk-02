@@ -1,0 +1,41 @@
+DELIMITER //
+
+CREATE PROCEDURE EmployeeAuthentication(
+    IN p_Username VARCHAR(50),
+    IN p_Password VARCHAR(50),
+    OUT p_Authenticated INT
+)
+BEGIN
+    DECLARE v_Count INT;
+    
+    SELECT COUNT(*) INTO v_Count
+    FROM Employees
+    WHERE Username = p_Username AND Password = p_Password;
+    
+    IF v_Count = 1 THEN
+        SET p_Authenticated = 1;
+    ELSE
+        SET p_Authenticated = 0;
+    END IF;
+END //
+
+CREATE PROCEDURE SearchEmployeesByCriteria(
+    IN p_Position VARCHAR(100),
+    IN p_Department VARCHAR(100),
+    OUT p_ResultCount INT
+)
+BEGIN
+    DECLARE v_Count INT;
+    
+    SELECT COUNT(*) INTO v_Count
+    FROM Employees
+    WHERE Position = p_Position AND Department = p_Department;
+    
+    SET p_ResultCount = v_Count;
+    
+    SELECT *
+    FROM Employees
+    WHERE Position = p_Position AND Department = p_Department;
+END //
+
+DELIMITER ;

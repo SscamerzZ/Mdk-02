@@ -1,0 +1,53 @@
+DELIMITER //
+
+CREATE PROCEDURE ClientAuthentication(
+    IN p_ClientName VARCHAR(100),
+    IN p_Address VARCHAR(255),
+    IN p_Phone VARCHAR(20),
+    IN p_Email VARCHAR(100),
+    IN p_PhotoPath VARCHAR(255),
+    OUT p_ClientID INT
+)
+BEGIN
+    DECLARE v_ClientCount INT;
+    
+    SELECT COUNT(*) INTO v_ClientCount
+    FROM Clients
+    WHERE ClientName = p_ClientName AND Address = p_Address AND Phone = p_Phone AND Email = p_Email;
+    
+    IF v_ClientCount = 0 THEN
+        INSERT INTO Clients (ClientName, Address, Phone, Email, PhotoPath) VALUES
+        (p_ClientName, p_Address, p_Phone, p_Email, p_PhotoPath);
+        
+        SELECT LAST_INSERT_ID() INTO p_ClientID;
+    ELSE
+        SELECT ClientID INTO p_ClientID
+        FROM Clients
+        WHERE ClientName = p_ClientName AND Address = p_Address AND Phone = p_Phone AND Email = p_Email;
+    END IF;
+END //
+
+CREATE PROCEDURE ChangeEmployeeLastName(
+    IN p_OldLastName VARCHAR(100),
+    IN p_NewLastName VARCHAR(100),
+    OUT p_Message VARCHAR(255)
+)
+BEGIN
+    DECLARE v_Count INT;
+    
+    SELECT COUNT(*) INTO v_Count
+    FROM Employees
+    WHERE FullName LIKE CONCAT('%', p_OldLastName);
+    
+    IF v_Count > 0 THEN
+        UPDATE Employees
+        SET FullName = REPLACE(FullName, p_OldLastName, p_NewLastName)
+        WHERE FullName LIKE CONCAT('%', p_OldLastName);
+        
+        SET p_Message = CONCAT('Фамилия сотрудников с фамилией ', p_OldLastName, ' успешно изменена на ', p_NewLastName);
+    ELSE
+        SET p_Message = CONCAT('Сотрудники с фамилией ', p_OldLastName, ' не найдены');
+    END IF;
+END //
+
+DELIMITER ;

@@ -1,0 +1,48 @@
+DELIMITER //
+
+-- Создание хранимой процедуры для авторизации сотрудника банка
+CREATE PROCEDURE EmployeeAuthentication(
+    IN p_Username VARCHAR(50),
+    IN p_Password VARCHAR(50),
+    OUT p_Authenticated INT
+)
+BEGIN
+    DECLARE v_Count INT;
+    
+    -- Проверка наличия пользователя с заданным логином и паролем
+    SELECT COUNT(*) INTO v_Count
+    FROM Employees
+    WHERE Username = p_Username AND Password = p_Password;
+    
+    -- Установка значения переменной p_Authenticated в зависимости от результата проверки
+    IF v_Count = 1 THEN
+        SET p_Authenticated = 1; -- Пользователь аутентифицирован
+    ELSE
+        SET p_Authenticated = 0; -- Пользователь не аутентифицирован
+    END IF;
+END //
+
+-- Создание хранимой процедуры для поиска/просмотра сотрудников по отделам и параметрам
+CREATE PROCEDURE SearchEmployeesByCriteria(
+    IN p_Position VARCHAR(100),
+    IN p_Department VARCHAR(100),
+    OUT p_ResultCount INT
+)
+BEGIN
+    DECLARE v_Count INT;
+    
+    -- Поиск сотрудников по заданным критериям
+    SELECT COUNT(*) INTO v_Count
+    FROM Employees
+    WHERE Position = p_Position AND Department = p_Department;
+    
+    -- Присвоение результата поиска переменной p_ResultCount
+    SET p_ResultCount = v_Count;
+    
+    -- Вывод информации о сотрудниках, удовлетворяющих заданным критериям
+    SELECT *
+    FROM Employees
+    WHERE Position = p_Position AND Department = p_Department;
+END //
+
+DELIMITER ;
