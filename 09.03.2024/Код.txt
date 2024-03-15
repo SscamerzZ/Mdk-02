@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_ENTRIES 1000
+#define MAX_NAME_LENGTH 50
+#define MAX_DATE_LENGTH 20
+#define MAX_CATEGORY_LENGTH 20
+
+struct Entry {
+    char date[MAX_DATE_LENGTH];
+    char name[MAX_NAME_LENGTH];
+    int number;
+    char category[MAX_CATEGORY_LENGTH];
+};
+
+int main() {
+    struct Entry entries[MAX_ENTRIES];
+    int num_entries = 0;
+
+    FILE *input_file = fopen("in.txt", "r");
+    if (input_file == NULL) {
+        printf("Ошибка открытия файла\n");
+        return 1;
+    }
+
+    while (fscanf(input_file, "%s %s %d %s",
+                  entries[num_entries].date,
+                  entries[num_entries].name,
+                  &entries[num_entries].number,
+                  entries[num_entries].category) == 4) {
+        num_entries++;
+    }
+    fclose(input_file);
+
+    struct Entry lux_entries[MAX_ENTRIES];
+    int num_lux_entries = 0;
+
+    for (int i = 0; i < num_entries; i++) {
+        if (strcmp(entries[i].category, "Люкс") == 0) {
+            strcpy(lux_entries[num_lux_entries].name, entries[i].name);
+            lux_entries[num_lux_entries].number = entries[i].number;
+            num_lux_entries++;
+        }
+    }
+
+    for (int i = 0; i < num_lux_entries; i++) {
+        for (int j = i + 1; j < num_lux_entries; j++) {
+            if (strcmp(lux_entries[i].name, lux_entries[j].name) > 0) {
+                struct Entry temp = lux_entries[i];
+                lux_entries[i] = lux_entries[j];
+                lux_entries[j] = temp;
+            }
+        }
+    }
+
+    FILE *output_file = fopen("out.txt", "w");
+    if (output_file == NULL) {
+        printf("Ошибка открытия файла\n");
+        return 1;
+    }
+
+    fprintf(output_file, "Фамилия\tНомер\n");
+    for (int i = 0; i < num_lux_entries; i++) {
+        fprintf(output_file, "%s\t%d\n", lux_entries[i].name, lux_entries[i].number);
+    }
+    fclose(output_file);
+
+    return 0;
+}
