@@ -1,0 +1,55 @@
+-- Создание таблицы для хранения истории событий о сотрудниках
+CREATE TABLE EmployeeHistory (
+    HistoryID INT PRIMARY KEY AUTO_INCREMENT,
+    EmployeeID INT NOT NULL,
+    Action VARCHAR(100) NOT NULL,
+    ActionTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (EmployeeID) REFERENCES Employees(EmployeeID)
+);
+
+-- Триггер для отслеживания обновления данных в таблице Employees
+DELIMITER //
+CREATE TRIGGER UpdateEmployeeTrigger
+AFTER UPDATE ON Employees
+FOR EACH ROW
+BEGIN
+    IF OLD.Username <> NEW.Username THEN
+        INSERT INTO EmployeeHistory (EmployeeID, Action) VALUES (NEW.EmployeeID, CONCAT('Username changed from ', OLD.Username, ' to ', NEW.Username));
+    END IF;
+    IF OLD.FullName <> NEW.FullName THEN
+        INSERT INTO EmployeeHistory (EmployeeID, Action) VALUES (NEW.EmployeeID, CONCAT('Full name changed from ', OLD.FullName, ' to ', NEW.FullName));
+    END IF;
+    IF OLD.Department <> NEW.Department THEN
+        INSERT INTO EmployeeHistory (EmployeeID, Action) VALUES (NEW.EmployeeID, CONCAT('Department changed from ', OLD.Department, ' to ', NEW.Department));
+    END IF;
+    IF OLD.Position <> NEW.Position THEN
+        INSERT INTO EmployeeHistory (EmployeeID, Action) VALUES (NEW.EmployeeID, CONCAT('Position changed from ', OLD.Position, ' to ', NEW.Position));
+    END IF;
+    IF OLD.PhotoPath <> NEW.PhotoPath THEN
+        INSERT INTO EmployeeHistory (EmployeeID, Action) VALUES (NEW.EmployeeID, CONCAT('Photo path changed from ', OLD.PhotoPath, ' to ', NEW.PhotoPath));
+    END IF;
+END;
+//
+DELIMITER ;
+
+-- Триггер для отслеживания удаления данных из таблицы Employees
+DELIMITER //
+CREATE TRIGGER DeleteEmployeeTrigger
+AFTER DELETE ON Employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO EmployeeHistory (EmployeeID, Action) VALUES (OLD.EmployeeID, 'Employee deleted');
+END;
+//
+DELIMITER ;
+
+-- Триггер для отслеживания добавления новых данных в таблицу Employees
+DELIMITER //
+CREATE TRIGGER InsertEmployeeTrigger
+AFTER INSERT ON Employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO EmployeeHistory (EmployeeID, Action) VALUES (NEW.EmployeeID, 'Employee added');
+END;
+//
+DELIMITER ;
