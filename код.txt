@@ -1,0 +1,478 @@
+import sqlite3
+import sys
+
+from PyQt6.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QMessageBox, QTableWidget, \
+    QTableWidgetItem, QInputDialog, QMainWindow, QApplication, QGridLayout
+
+
+class Database:
+    def __init__(self):
+        self.connection = sqlite3.connect("transport_system.db")
+        self.cursor = self.connection.cursor()
+        self.create_tables()
+        self.create_information_table()
+
+    def create_tables(self):
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL,
+                password TEXT NOT NULL,
+                is_admin INTEGER NOT NULL DEFAULT 0
+            )
+        ''')
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS vehicles (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                model TEXT NOT NULL,
+                type TEXT NOT NULL,
+                year INTEGER NOT NULL
+            )
+        ''')
+        self.connection.commit()
+
+    def reset_tables(self):
+        try:
+            users_backup = self.get_all_users()
+            vehicles_backup = self.get_all_vehicles()
+
+            self.cursor.execute('DROP TABLE IF EXISTS users')
+            self.cursor.execute('DROP TABLE IF EXISTS vehicles')
+
+            self.create_tables()
+
+            for user in users_backup:
+                self.add_user(*user[1:])
+
+            for vehicle in vehicles_backup:
+                self.add_vehicle(*vehicle[1:])
+
+            self.connection.commit()
+        except Exception as e:
+            print(f"Error resetting tables: {e}")
+
+    def add_user(self, username, password, is_admin=False):
+        self.cursor.execute('INSERT INTO users (username, password, is_admin) VALUES (?, ?, ?)',
+                            (username, password, is_admin))
+        self.connection.commit()
+        self.cursor.execute('INSERT INTO users (username, password, is_admin) VALUES (?, ?, ?)',
+                            (username, password, is_admin))
+        self.connection.commit()
+
+    def get_user(self, username, password):
+        self.cursor.execute('SELECT * FROM users WHERE username=? AND password=?', (username, password))
+        return self.cursor.fetchone()
+
+    def get_all_users(self):
+        self.cursor.execute('SELECT * FROM users')
+        return self.cursor.fetchall()
+
+    def add_vehicle(self, model, vehicle_type, year):
+        year = int(year)
+        self.cursor.execute('INSERT INTO vehicles (model, type, year) VALUES (?, ?, ?)', (model, vehicle_type, year))
+        self.connection.commit()
+
+    def delete_vehicle(self, vehicle_id):
+        self.cursor.execute('DELETE FROM vehicles WHERE id=?', (vehicle_id,))
+        self.connection.commit()
+
+    def get_all_vehicles(self):
+        self.cursor.execute('SELECT * FROM vehicles')
+        return self.cursor.fetchall()
+
+    def create_information_table(self):
+        self.cursor.execute('''
+            CREATE TABLE IF NOT EXISTS vehicle_information (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                vehicle_id INTEGER UNIQUE,
+                engine TEXT,
+                transmission TEXT,
+                body TEXT,
+                color TEXT,
+                documents TEXT,
+                cost REAL,
+                fuel_consumption REAL,
+                insurance TEXT,
+                tax REAL,
+                FOREIGN KEY (vehicle_id) REFERENCES vehicles(id)
+            )
+        ''')
+        self.connection.commit()
+
+    def update_vehicle_information(self, vehicle_id, engine, transmission, body, color, documents, cost,
+                                   fuel_consumption, insurance, tax):
+        self.cursor.execute('''
+            INSERT OR REPLACE INTO vehicle_information (vehicle_id, engine, transmission, body, color, documents, cost, fuel_consumption, insurance, tax)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (vehicle_id, engine, transmission, body, color, documents, cost, fuel_consumption, insurance, tax))
+        self.connection.commit()
+
+    def get_vehicle_information(self, vehicle_id):
+        self.cursor.execute('SELECT * FROM vehicle_information WHERE vehicle_id=?', (vehicle_id,))
+        return self.cursor.fetchone()
+
+
+class DarkModeMixin:
+    def set_dark_mode(self):
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #333333;
+                color: #ffffff;
+            }
+            QLabel {
+                color: #ffffff;
+            }
+            QLineEdit {
+                background-color: #666666;
+                color: #ffffff;
+            }
+            QPushButton {
+                background-color: #666666;
+                color: #ffffff;
+            }
+            QTableWidget {
+                background-color: #666666;
+                color: #ffffff;
+                alternate-background-color: #555555; 
+            }
+            QHeaderView::section {
+                background-color: #444444; 
+                color: #ffffff;
+            }
+        """)
+
+
+class LoginWindow(QWidget, DarkModeMixin):
+    def __init__(self, database, parent=None):
+        super().__init__(parent)
+        self.database = database
+        self.init_ui()
+
+    def init_ui(self):
+        self.set_dark_mode()
+        self.username_label = QLabel('Имя пользователя:')
+        self.username_input = QLineEdit()
+
+        self.password_label = QLabel('Пароль:')
+        self.password_input = QLineEdit()
+        self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
+
+        self.login_button = QPushButton('Войти')
+        self.login_button.clicked.connect(self.login)
+
+        self.register_button = QPushButton('Зарегистрироваться')
+        self.register_button.clicked.connect(self.register)
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.username_label)
+        layout.addWidget(self.username_input)
+        layout.addWidget(self.password_label)
+        layout.addWidget(self.password_input)
+        layout.addWidget(self.login_button)
+        layout.addWidget(self.register_button)
+        self.setLayout(layout)
+
+    def login(self):
+        username = self.username_input.text()
+        password = self.password_input.text()
+
+        if not username or not password:
+            QMessageBox.warning(self, 'Ошибка входа', 'Пожалуйста, введите имя пользователя и пароль')
+            return
+
+        user = self.database.get_user(username, password)
+        if user:
+            self.show_main_window(user)
+        else:
+            QMessageBox.warning(self, 'Ошибка входа', 'Неверное имя пользователя или пароль')
+
+    def register(self):
+        username = self.username_input.text()
+        password = self.password_input.text()
+
+        if not username or not password:
+            QMessageBox.warning(self, 'Ошибка регистрации', 'Пожалуйста, введите имя пользователя и пароль')
+            return
+
+        existing_users = [user[1] for user in self.database.get_all_users()]
+        if username in existing_users:
+            QMessageBox.warning(self, 'Ошибка регистрации',
+                                'Имя пользователя уже существует. Пожалуйста, выберите другое.')
+        else:
+            self.database.add_user(username, password)
+            QMessageBox.information(self, 'Регистрация успешна', 'Вы успешно зарегистрированы. Теперь вы можете войти.')
+
+    def show_main_window(self, user):
+        self.main_window = MainWindow(self.database, user)
+        self.main_window.show()
+        self.close()
+
+
+class AdminMainWindow(QWidget, DarkModeMixin):
+    def __init__(self, database, parent=None):
+        super().__init__(parent)
+        self.database = database
+        self.init_ui()
+
+    def init_ui(self):
+        self.set_dark_mode()
+        self.setWindowTitle('Основное окно администратора')
+
+        self.add_vehicle_button = QPushButton('Добавить транспортное средство')
+        self.add_vehicle_button.clicked.connect(self.add_vehicle)
+
+        self.delete_vehicle_button = QPushButton('Удалить транспортное средство')
+        self.delete_vehicle_button.clicked.connect(self.delete_vehicle)
+
+        self.vehicle_table = QTableWidget(self)
+        self.vehicle_table.setColumnCount(4)
+        self.vehicle_table.setHorizontalHeaderLabels(['ID', 'Модель', 'Тип', 'Год выпуска'])
+
+        self.load_vehicles()
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(self.add_vehicle_button)
+        layout.addWidget(self.delete_vehicle_button)
+        layout.addWidget(self.vehicle_table)
+        layout.addStretch()
+        self.setLayout(layout)
+
+    def load_vehicles(self):
+        try:
+            vehicles = self.database.get_all_vehicles()
+            self.vehicle_table.setRowCount(len(vehicles))
+            for row, vehicle in enumerate(vehicles):
+                for col, data in enumerate(vehicle):
+                    item = QTableWidgetItem(str(data) if col == 3 else str(data))
+                    self.vehicle_table.setItem(row, col, item)
+        except Exception as e:
+            print(f"Error loading vehicles: {e}")
+
+    def add_vehicle(self):
+        try:
+            model, ok_model = QInputDialog.getText(self, 'Добавить транспортное средство',
+                                                   'Введите модель транспортного средства:')
+            vehicle_type, ok_type = QInputDialog.getText(self, 'Добавить транспортное средство',
+                                                         'Введите тип транспортного средства:')
+
+            year, ok_year = QInputDialog.getInt(self, 'Добавить транспортное средство', 'Введите год выпуска:')
+
+            if ok_model and ok_type and ok_year:
+                self.database.add_vehicle(model, vehicle_type, year)
+                self.load_vehicles()
+            else:
+                print("Пользователь отменил операцию.")
+        except Exception as e:
+            print(f"Error adding vehicle: {e}")
+
+    def delete_vehicle(self):
+        try:
+            selected_rows = self.vehicle_table.selectionModel().selectedRows()
+
+            if not selected_rows:
+                QMessageBox.warning(self, 'Удаление не удалось',
+                                    'Пожалуйста, выберите транспортное средство для удаления.')
+                return
+
+            confirmation = QMessageBox.question(self, 'Подтверждение удаления',
+                                                'Вы уверены, что хотите удалить выбранное транспортное средство?',
+                                                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+
+            if confirmation == QMessageBox.StandardButton.Yes:
+                for row in reversed(sorted(selected_rows)):
+                    vehicle_id = self.vehicle_table.item(row.row(), 0).text()
+                    self.database.delete_vehicle(vehicle_id)
+
+                self.load_vehicles()
+        except Exception as e:
+            print(f"Error deleting vehicle: {e}")
+
+
+class MainWindow(QMainWindow, DarkModeMixin):
+    def __init__(self, database, user, parent=None):
+        super().__init__(parent)
+        self.database = database
+        self.user = user
+        self.init_ui()
+        self.resize(435, 450)
+        self.selected_vehicle_id = None
+
+    def init_ui(self):
+        self.set_dark_mode()
+        self.setWindowTitle('Основное окно')
+
+        self.add_vehicle_button = QPushButton('Добавить транспортное средство')
+        self.add_vehicle_button.clicked.connect(self.add_vehicle)
+
+        self.delete_vehicle_button = QPushButton('Удалить транспортное средство')
+        self.delete_vehicle_button.clicked.connect(self.delete_vehicle)
+
+        self.add_info_button = QPushButton('Добавить информацию о транспортном средстве или отредактировать')
+        self.add_info_button.clicked.connect(self.add_information)
+
+        self.analysis_button = QPushButton('Анализ транспортного средства')
+        self.analysis_button.clicked.connect(self.vehicle_analysis)
+
+        self.current_user_is_admin = self.user[3] == 1
+
+        self.vehicle_table = QTableWidget(self)
+        self.vehicle_table.setColumnCount(4)
+        self.vehicle_table.setHorizontalHeaderLabels(['ID', 'Модель', 'Тип', 'Год выпуска'])
+        self.vehicle_table.cellClicked.connect(self.vehicle_selected)
+
+        self.load_vehicles()
+
+        layout = QVBoxLayout()
+        layout.addWidget(self.add_vehicle_button)
+        layout.addWidget(self.delete_vehicle_button)
+        layout.addWidget(self.add_info_button)
+        layout.addWidget(self.analysis_button)
+        layout.addWidget(self.vehicle_table)
+
+        layout.setStretchFactor(self.vehicle_table, 1)
+
+        central_widget = QWidget()
+        central_widget.setLayout(layout)
+        self.setCentralWidget(central_widget)
+
+    def vehicle_analysis(self):
+        if not self.selected_vehicle_id:
+            QMessageBox.warning(self, 'Ошибка', 'Пожалуйста, выберите транспортное средство для анализа.')
+            return
+
+        info = self.database.get_vehicle_information(self.selected_vehicle_id)
+
+        if info:
+            info_str = f"""
+                Информация о транспортном средстве (ID: {self.selected_vehicle_id}):
+                Двигатель: {info[2]}
+                Пробег: {info[3]}
+                Кузов: {info[4]}
+                Цвет: {info[5]}
+                Документы: {info[6]}
+                Стоимость: {info[7]}
+                Расход топлива: {info[8]}
+                Страховка: {info[9]}
+                Налог: {info[10]}
+            """
+            QMessageBox.information(self, 'Анализ транспортного средства', info_str)
+        else:
+            QMessageBox.warning(self, 'Ошибка', 'Информации о выбранном транспортном средстве не найдено.')
+
+    def load_vehicles(self):
+        try:
+            vehicles = self.database.get_all_vehicles()
+            self.vehicle_table.setRowCount(len(vehicles))
+            for row, vehicle in enumerate(vehicles):
+                for col, data in enumerate(vehicle):
+                    item = QTableWidgetItem(str(data) if col == 3 else str(data))
+                    self.vehicle_table.setItem(row, col, item)
+        except Exception as e:
+            print(f"Error loading vehicles: {e}")
+
+    def add_vehicle(self):
+        if not self.current_user_is_admin:
+            QMessageBox.warning(self, 'Ошибка', 'У вас нет прав для добавления транспортных средств.')
+            return
+
+        try:
+            model, ok_model = QInputDialog.getText(self, 'Добавить транспортное средство',
+                                                   'Введите модель транспортного средства:')
+            vehicle_type, ok_type = QInputDialog.getText(self, 'Добавить транспортное средство',
+                                                         'Введите тип транспортного средства:')
+            year, ok_year = QInputDialog.getInt(self, 'Добавить транспортное средство', 'Введите год выпуска:')
+
+            if ok_model and ok_type and ok_year:
+                self.database.add_vehicle(model, vehicle_type, year)
+                self.load_vehicles()
+            else:
+                print("Пользователь отменил операцию.")
+        except Exception as e:
+            print(f"Error adding vehicle: {e}")
+
+    def delete_vehicle(self):
+        if not self.current_user_is_admin:
+            QMessageBox.warning(self, 'Ошибка', 'У вас нет прав для удаления транспортных средств.')
+            return
+        try:
+            selected_rows = self.vehicle_table.selectionModel().selectedRows()
+
+            if not selected_rows:
+                QMessageBox.warning(self, 'Удаление не удалось',
+                                    'Пожалуйста, выберите транспортное средство для удаления.')
+                return
+
+            confirmation = QMessageBox.question(self, 'Подтверждение удаления',
+                                                'Вы уверены, что хотите удалить выбранное транспортное средство?',
+                                                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+
+            if confirmation == QMessageBox.StandardButton.Yes:
+                for row in reversed(sorted(selected_rows)):
+                    vehicle_id = self.vehicle_table.item(row.row(), 0).text()
+                    self.database.delete_vehicle(vehicle_id)
+
+                self.load_vehicles()
+        except Exception as e:
+            print(f"Error deleting vehicle: {e}")
+
+    def vehicle_selected(self, row, col):
+        self.selected_vehicle_id = self.vehicle_table.item(row, 0).text()
+
+    def add_information(self):
+        if not self.current_user_is_admin:
+            QMessageBox.warning(self, 'Ошибка', 'У вас нет прав для добавления информации о транспортных средствах.')
+            return
+
+        if self.selected_vehicle_id is None:
+            QMessageBox.warning(self, 'Ошибка', 'Пожалуйста, выберите транспортное средство для добавления информации.')
+            return
+
+        try:
+            engine, ok_engine = QInputDialog.getText(self, 'Информация о транспортном средстве',
+                                                     'Введите информацию о двигателе:')
+            probeg, ok_probeg = QInputDialog.getText(self, 'Информация о транспортном средстве',
+                                                     'Введите информацию о пробеге:')
+            body_options = ["Седан", "Купе", "Лифтбек", "Универсал", "Минивэн", "Хэтчбек", "Внедорожник", "Кабриолет", "Пикап"]
+            body, ok_body = QInputDialog.getItem(self, 'Информация о транспортном средстве',
+                                                 'Введите информацию о кузове:', body_options)
+            color_options = ["Серая", "Чёрная", "Красная","Зелёная", "Синяя", "Белая", "Жёлтая"]
+            color, ok_color = QInputDialog.getItem(self, 'Информация о транспортном средстве',
+                                                   'Введите информацию о цвете:', color_options)
+            documents_options = ["ПТС", "СТС", "ПТС И СТС", "Нет"]
+            documents, ok_documents = QInputDialog.getItem(self, 'Информация о транспортном средстве',
+                                                           'Выберите тип документа:', documents_options)
+            cost, ok_cost = QInputDialog.getDouble(self, 'Информация о транспортном средстве', 'Введите стоимость:')
+            fuel_consumption, ok_fuel_consumption = QInputDialog.getDouble(self, 'Информация о транспортном средстве',
+                                                                           'Введите расход топлива:')
+            insurance, ok_insurance = QInputDialog.getText(self, 'Информация о транспортном средстве',
+                                                           'Введите информацию о страховке:')
+            tax, ok_tax = QInputDialog.getDouble(self, 'Информация о транспортном средстве',
+                                                 'Введите информацию о налоге:')
+
+            if ok_engine and ok_probeg and ok_body and ok_color and ok_documents and ok_cost and ok_fuel_consumption and ok_insurance and ok_tax:
+                self.database.update_vehicle_information(
+                    self.selected_vehicle_id,
+                    engine, probeg, body, color, documents, cost, fuel_consumption, insurance, tax
+                )
+
+                QMessageBox.information(self, 'Успех', 'Информация успешно добавлена.')
+            else:
+                print("Пользователь отменил операцию.")
+        except Exception as e:
+            print(f"Error adding information: {e}")
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+
+    database = Database()
+    database.reset_tables()
+
+    admin_username = '1'
+    admin_password = '1'
+    database.add_user(admin_username, admin_password, is_admin=True)
+
+    login_window = LoginWindow(database)
+    login_window.show()
+
+    sys.exit(app.exec())
