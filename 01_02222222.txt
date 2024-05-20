@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Page01_2</class>
+ <widget class="QWidget" name="Page01_2">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>01.2 Первичная приёмка на склад</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>01.2 Первичная приёмка на склад</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="contractorLabel">
+     <property name="text">
+      <string>Выберите подрядчика*</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="contractorComboBox"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="contractLabel">
+     <property name="text">
+      <string>Договор о поставке ОДК</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="contractComboBox"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="contractIDLabel">
+     <property name="text">
+      <string>Номер договора о поставке ОДК</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="contractIDLineEdit"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="contractDateLabel">
+     <property name="text">
+      <string>Дата договора</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDateEdit" name="contractDateEdit"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="odkTypeLabel">
+     <property name="text">
+      <string>Выберите тип поставки*</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="odkTypeComboBox"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="odkSelectorLabel">
+     <property name="text">
+      <string>Выберите ОДК*</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="odkSelectorComboBox"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="viewPhotoButton">
+     <property name="text">
+      <string>Посмотреть эталонное фото</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="warehouseLabel">
+     <property name="text">
+      <string>Выберите склад*</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="warehouseComboBox"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="contactLabel">
+     <property name="text">
+      <string>Выберите контакт</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="contactComboBox"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="odkNumLabel">
+     <property name="text">
+      <string>Введите количество ОДК*</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="odkNumLineEdit"/>
+   </item>
+   <item>
+    <widget class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="supplierDebtLabel">
+       <property name="text">
+        <string>Долг поставщика:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="standardPhotoLabel">
+       <property name="text">
+        <string>Эталонное фото</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="addPhotoButton">
+       <property name="text">
+        <string>Добавить</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="fileCountLabel">
+       <property name="text">
+        <string>Файлов:0</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QWidget" name="photoWidget" native="true"/>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="backButton">
+       <property name="text">
+        <string>Назад</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="sendButton">
+       <property name="text">
+        <string>Отправить</string>
+       </property>
+      </widget>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGridLayout" name="gridLayout_3">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="forwardButton">
+       <property name="text">
+        <string>&gt;</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="backwardButton">
+       <property name="text">
+        <string>&lt;</string>
+       </property>
+      </widget>
+     </item>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
