@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Page01_1</class>
+ <widget class="QWidget" name="Page01_1">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>01.1 Внесение данных о купленных ОДК</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>01.1 Внесение данных о купленных ОДК</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="contractorLabel">
+     <property name="text">
+      <string>Выберите подрядчика*</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="contractorComboBox"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="eventLabel">
+     <property name="text">
+      <string>Выберите мероприятие*</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="eventComboBox"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="odkIdLabel">
+     <property name="text">
+      <string>Введите номер договора о закупке ОДК</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="odkIdLineEdit"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="odkDateLabel">
+     <property name="text">
+      <string>Выберите дату договора о закупке ОДК</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDateEdit" name="odkDateEdit"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="odkTypeLabel">
+     <property name="text">
+      <string>Выберите тип поставки*</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="odkTypeComboBox"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="odkSelectorLabel">
+     <property name="text">
+      <string>Выберите ОДК*</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="odkSelectorComboBox"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="odkNumLabel">
+     <property name="text">
+      <string>Введите количество ОДК*</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="odkNumLineEdit"/>
+   </item>
+   <item>
+    <widget class="QPushButton" name="backButton">
+     <property name="text">
+      <string>Назад</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="sendButton">
+     <property name="text">
+      <string>Отправить</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="forwardButton">
+     <property name="text">
+      <string>&gt;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="backwardButton">
+     <property name="text">
+      <string>&lt;</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
