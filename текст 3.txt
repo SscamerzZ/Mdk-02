@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainPage</class>
+ <widget class="QWidget" name="MainPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Система учёта ОДК</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="labelProcesses">
+     <property name="text">
+      <string>Процессы</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+       <family>Microsoft Sans Serif</family>
+      </font>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelName">
+     <property name="text">
+      <string>Наименование</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #FF787474;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <layout class="QVBoxLayout" name="scrollAreaLayout">
+       <item>
+        <widget class="QPushButton" name="button00">
+         <property name="text">
+          <string>00 Учет остатков (однократный)</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button01_1">
+         <property name="text">
+          <string>01. 1 Внесение данных о купленных ОДК</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button01_2">
+         <property name="text">
+          <string>01. 2 Первичная приёмка на склад</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <!-- Add similar QPushButton widgets for the rest of the buttons -->
+       <item>
+        <layout class="QHBoxLayout" name="bottomLayout">
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="sizeType">
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="go_lev">
+           <property name="text">
+            <string>&lt;</string>
+           </property>
+           <property name="minimumHeight">
+            <number>38</number>
+           </property>
+           <property name="minimumWidth">
+            <number>28</number>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>24</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #00DDDDDD; border-color: #00DDDDDD; color: #FF787474;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="go_prav">
+           <property name="text">
+            <string>&gt;</string>
+           </property>
+           <property name="minimumHeight">
+            <number>38</number>
+           </property>
+           <property name="minimumWidth">
+            <number>30</number>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>24</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #00DDDDDD; border-color: #00DDDDDD; color: #FF787474;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
