@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Page01_1</class>
+ <widget class="QMainWindow" name="Page01_1">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>621</width>
+         <height>458</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <pointsize>25</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>01.1 Внесение данных о купленных ОДК</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Выберите подрядчика*</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox">
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+    /* Your style for combo box */
+}</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Выберите мероприятие*</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_2">
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+    /* Your style for combo box */
+}</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Введите номер договора о закупке ОДК</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit">
+          <property name="styleSheet">
+           <string notr="true">QLineEdit {
+    /* Your style for line edit */
+}</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Выберите дату договора о закупке ОДК</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="dateEdit">
+          <property name="styleSheet">
+           <string notr="true">QDateEdit {
+    /* Your style for date edit */
+}</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Выберите тип поставки*</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_3">
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+    /* Your style for combo box */
+}</string>
+          </property>
+          <item>
+           <widget class="QComboBox" name="comboBox_4"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_5"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_6"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_7"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_8"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_9"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_10"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_11"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_12"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_13"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_14"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox_15"/>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Выберите ОДК*</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="comboBox_16">
+          <property name="styleSheet">
+           <string notr="true">QComboBox {
+    /* Your style for combo box */
+}</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Введите количество ОДК*</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit
