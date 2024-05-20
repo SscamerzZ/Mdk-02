@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainPage</class>
+ <widget class="QWidget" name="MainPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Система учёта ОДК</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="labelProcesses">
+     <property name="text">
+      <string>Процессы</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>30</pointsize>
+       <family>Microsoft Sans Serif</family>
+      </font>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="labelName">
+     <property name="text">
+      <string>Наименование</string>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: #FF787474;</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <layout class="QVBoxLayout" name="scrollAreaLayout">
+       <item>
+        <widget class="QPushButton" name="button00">
+         <property name="text">
+          <string>00 Учет остатков (однократный)</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button01_1">
+         <property name="text">
+          <string>01. 1 Внесение данных о купленных ОДК</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button01_2">
+         <property name="text">
+          <string>01. 2 Первичная приёмка на склад</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button02">
+         <property name="text">
+          <string>02 Выдача ОДК со склада</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button03_1">
+         <property name="text">
+          <string>03. 1 Монтаж</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button03_2">
+         <property name="text">
+          <string>03. 2 Приём монтажа</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button04_1">
+         <property name="text">
+          <string>04. 1 Контроль результатов монтажа</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button04_2">
+         <property name="text">
+          <string>04. 2 Устронение замечаний подрядчиком</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button05_1">
+         <property name="text">
+          <string>05. 1 Демонтаж подрядчиком</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button05_2">
+         <property name="text">
+          <string>05. 2 Проверка демонтажа</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button06">
+         <property name="text">
+          <string>06 Приёмка на склад</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button07">
+         <property name="text">
+          <string>07 Пересчёт</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button08">
+         <property name="text">
+          <string>08 Дефектовка</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button09">
+         <property name="text">
+          <string>09 Списание</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button10_1">
+         <property name="text">
+          <string>10. 1 Выдача в ремонт</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button10_2">
+         <property name="text">
+                    <string>10. 2 Возврат из ремонта</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button11_1">
+         <property name="text">
+          <string>11. 1 Назначение объектов на ремонт</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button11_2">
+         <property name="text">
+          <string>11. 2 Распределение на осмотр внутри департамента</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button11_3">
+         <property name="text">
+          <string>11. 3 Осмотр</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button12_1">
+         <property name="text">
+          <string>12. 1 Создание новых ОДК и элементов</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button12_2">
+         <property name="text">
+          <string>12. 2 Реестр складов</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button12_3">
+         <property name="text">
+          <string>12. 3 Реестр мероприятий</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="button12_4">
+         <property name="text">
+          <string>12. 4 Адресная программа</string>
+         </property>
+         <property name="minimumHeight">
+          <number>50</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>13</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QPushButton" name="go_lev">
+           <property name="text">
+            <string>&lt;</string>
+           </property>
+           <property name="minimumHeight">
+            <number>38</number>
+           </property>
+           <property name="minimumWidth">
+            <number>28</number>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>24</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #00DDDDDD; border: 0px; color: #FF787474;</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="go_prav">
+           <property name="text">
+            <string>&gt;</string>
+           </property>
+           <property name="minimumHeight">
+            <number>38</number>
+           </property>
+           <property name="minimumWidth">
+            <number>30</number>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>24</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: #00DDDDDD; border: 0px; color: #FF787474;</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
