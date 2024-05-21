@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ODKAccountingPage02</class>
+ <widget class="QWidget" name="ODKAccountingPage02">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>02 Выдача ОДК со склада</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QScrollArea" name="scrollArea">
+     <property name="widgetResizable">
+      <bool>true</bool>
+     </property>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1920</width>
+        <height>1080</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="titleLabel">
+         <property name="text">
+          <string>02 Выдача ОДК со склада</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeft</set>
+         </property>
+         <property name="margin">
+          <number>15</number>
+         </property>
+         <property name="indent">
+          <number>20</number>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>25</pointsize>
+          </font>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="warehouseLabel">
+         <property name="text">
+          <string>Выберите склад*</string>
+         </property>
+         <property name="margin">
+          <number>15</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="warehouseSelector"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="contractorLabel">
+         <property name="text">
+          <string>Выберите подрядчика*</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="contractorSelector"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="eventLabel">
+         <property name="text">
+          <string>Выберите мероприятие из адресной программы*</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="eventSelector"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="odkLabel">
+         <property name="text">
+          <string>Выберите ОДК*</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="odkSelector"/>
+       </item>
+       <item>
+        <widget class="QTableView" name="displayGrid">
+         <property name="maximumHeight">
+          <number>206</number>
+         </property>
+         <property name="horizontalHeaderVisible">
+          <bool>true</bool>
+         </property>
+         <property name="verticalHeaderVisible">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="buttonLayout">
+         <property name="margin">
+          <rect>
+           <x>0</x>
+           <y>20</y>
+           <width>0</width>
+           <height>0</height>
+          </rect>
+         </property>
+         <item>
+          <widget class="QPushButton" name="backButton">
+           <property name="text">
+            <string>Назад</string>
+           </property>
+           <property name="clicked" stdset="0">
+            <signal>on_backButton_clicked()</signal>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="submitButton">
+           <property name="text">
+            <string>Отправить</string>
+           </property>
+           <property name="clicked" stdset="0">
+            <signal>on_submitButton_clicked()</signal>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="navigationLayout">
+         <property name="margin">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>0</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <item>
+          <widget class="QPushButton" name="forwardButton">
+           <property name="text">
+            <string>&gt;</string>
+           </property>
+           <property name="clicked" stdset="0">
+            <signal>on_forwardButton_clicked()</signal>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="backwardButton">
+           <property name="text">
+            <string>&lt;</string>
+           </property>
+           <property name="clicked" stdset="0">
+            <signal>on_backwardButton_clicked()</signal>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <connections/>
+</ui>
